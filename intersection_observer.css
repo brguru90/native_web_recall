@@ -1,0 +1,49 @@
+/*
+ * File: intersection_observer.css
+ * Project: js brushup
+ * File Created: Saturday, 30th March 2024 12:32:55 pm
+ * Author: Gurruprasad BR (you@you.you)
+ * -----
+ * Last Modified: Saturday, 30th March 2024 2:03:46 pm
+ * Modified By: Gurruprasad BR (you@you.you>)
+ */
+
+ html,body{
+    margin: 0;
+    padding: 0;
+ }
+
+.parent_container{
+    /* max-height: 100vh; */
+    max-height: calc(100vh - 20px);
+    overflow-y: auto;
+    background-color: antiquewhite;
+}
+
+ .container{
+    margin:10px;
+    position: relative;
+ }
+
+ .header{
+    background-color: antiquewhite;
+    width: 100%;
+ }
+
+ .header.fixed{
+    position: fixed;
+    top:0px;
+ }
+
+ .body{
+    /* position: absolute; */
+ }
+
+ .test_button{
+    background-color: purple;
+    color: white;
+ }
+
+ .test_button:hover{
+    background-color: blue;
+ }
