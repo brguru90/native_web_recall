@@ -4,7 +4,7 @@
  * File Created: Sunday, 31st March 2024 6:18:04 pm
  * Author: Guruprasad BR (you@you.you)
  * -----
- * Last Modified: Sunday, 31st March 2024 6:34:15 pm
+ * Last Modified: Sunday, 31st March 2024 6:49:17 pm
  * Modified By: Guruprasad BR (you@you.you>)
  */
 
@@ -22,6 +22,7 @@
            ["\t\tsuper()"],
            ["\t\tthis.shadow = this.attachShadow({ mode: \"open\" })"],
            ["\t\tthis.shadow.innerHTML=`<link rel=\"stylesheet\" href=\"MyComponent/style.css\" />`"],
+           ["\t\tthis.render()"],
            ["\t}"],
            [""],
            ["\trender() {"],

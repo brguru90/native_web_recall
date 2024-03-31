@@ -4,7 +4,7 @@
  * File Created: Sunday, 31st March 2024 6:12:09 pm
  * Author: Guruprasad BR (you@you.you)
  * -----
- * Last Modified: Sunday, 31st March 2024 6:38:15 pm
+ * Last Modified: Sunday, 31st March 2024 11:25:15 pm
  * Modified By: Guruprasad BR (you@you.you>)
  */
 
@@ -12,14 +12,33 @@ import ExtendedHTMLElement from "../../Modules/ExtendedHTMLElement.js"
 
 export default class TodoInput extends ExtendedHTMLElement {
 
+    state={
+        txt:""
+    }
+
     constructor() {
         super()
-        this.shadow = this.attachShadow({ mode: "open" })
+        this.shadow.onAdd = this.onAdd.bind(this)
+        this.shadow.updateText = this.updateText.bind(this)
+        this.render()
+    }
+
+
+    updateText(event){
+        this.state.txt=event.target.value
+    }
+
+
+    onAdd(){ 
+        // may be not a better way, since difficult to trace
+        const target=this.shadow.querySelector("input[type=text")
+        this.parent.onAddTodo(target.value)
+        target.value=""
     }
 
     render() {
         super.render(`
-            <h1>Todo input</h1>
+            <input type="text" onkeyup="this.getRootNode().updateText(event)" /> <input type="button" value="add" onclick="this.getRootNode().onAdd()" />
         `)
     }
 

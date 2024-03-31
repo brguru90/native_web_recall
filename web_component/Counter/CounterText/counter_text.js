@@ -4,23 +4,26 @@
  * File Created: Sunday, 31st March 2024 12:11:59 pm
  * Author: Guruprasad BR (you@you.you)
  * -----
- * Last Modified: Sunday, 31st March 2024 6:40:42 pm
+ * Last Modified: Monday, 1st April 2024 12:21:43 am
  * Modified By: Guruprasad BR (you@you.you>)
  */
 
 import ExtendedHTMLElement from "../../Modules/ExtendedHTMLElement.js"
 
+import "../../Todo/todo.js"
 
 export default class CounterText extends ExtendedHTMLElement {
 
 
     count = 0
 
+    ref={}
+
     constructor() {
         super()
-        this.shadow = this.attachShadow({ mode: "open" })
         // static HTML
         this.shadow.innerHTML=`<link rel="stylesheet" href="Counter/CounterText/style.css?test" />`
+        this.shadow.ref=this.ref
         this.render()
     }
 
@@ -31,6 +34,7 @@ export default class CounterText extends ExtendedHTMLElement {
 
 
     connectedCallback() {
+        super.connectedCallback()
         this.updateComponent()
     }
 
@@ -44,7 +48,10 @@ export default class CounterText extends ExtendedHTMLElement {
 
 
     render() {
-        super.render(`<div>Count: ${this.count}</div>`)
+        super.render(`
+            <div>Count: ${this.count}</div>
+            <todo-component onload="this.getRootNode()" />
+        `)
     }
 
 }
