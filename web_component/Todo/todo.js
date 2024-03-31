@@ -4,13 +4,13 @@
  * File Created: Sunday, 31st March 2024 6:07:32 pm
  * Author: Guruprasad BR (you@you.you)
  * -----
- * Last Modified: Sunday, 31st March 2024 6:38:54 pm
+ * Last Modified: Sunday, 31st March 2024 6:40:35 pm
  * Modified By: Guruprasad BR (you@you.you>)
  */
 
 import ExtendedHTMLElement from "../Modules/ExtendedHTMLElement.js"
 
-export default class CounterButton extends ExtendedHTMLElement {
+export default class TodoComponent extends ExtendedHTMLElement {
 
     constructor() {
         super()
@@ -28,4 +28,4 @@ export default class CounterButton extends ExtendedHTMLElement {
 }
 
 
-customElements.define("counter-button", CounterButton)
+customElements.define("todo-component", TodoComponent)
