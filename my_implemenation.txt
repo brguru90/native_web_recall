@@ -1,0 +1,14 @@
+/*
+ * File: my_implemenation.txt
+ * Project: js brushup
+ * File Created: Sunday, 31st March 2024 6:35:20 pm
+ * Author: Guruprasad BR (you@you.you)
+ * -----
+ * Last Modified: Sunday, 31st March 2024 6:36:29 pm
+ * Modified By: Guruprasad BR (you@you.you>)
+ */
+
+1. reactivity
+2. moduler & re usable component
+3. shadow dom for scopping
+4. component snippet for vscode (type--> wcc)

@@ -4,8 +4,8 @@
  * File Created: Saturday, 30th March 2024 8:44:38 pm
  * Author: Gurruprasad BR (you@you.you)
  * -----
- * Last Modified: Saturday, 30th March 2024 9:14:11 pm
- * Modified By: Gurruprasad BR (you@you.you>)
+ * Last Modified: Sunday, 31st March 2024 5:12:22 pm
+ * Modified By: Guruprasad BR (you@you.you>)
  */
 
 export default class RootComponent extends HTMLElement{
@@ -19,10 +19,10 @@ export default class RootComponent extends HTMLElement{
 
     render(){
         return `
-        <div>
+        <fragment-component>
             <h1>Root component</h1>
             <slot></slot>
-        </div>        
+        </fragment-component>        
         `
     }
 }

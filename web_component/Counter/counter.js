@@ -4,15 +4,18 @@
  * File Created: Saturday, 30th March 2024 9:04:25 pm
  * Author: Guruprasad BR (you@you.you)
  * -----
- * Last Modified: Sunday, 31st March 2024 3:40:29 pm
+ * Last Modified: Sunday, 31st March 2024 6:06:45 pm
  * Modified By: Guruprasad BR (you@you.you>)
  */
 
 
-import "./Button/index.js"
-import "./CounterText/index.js"
+import "./Button/increment_button.js"
+import "./CounterText/counter_text.js"
 
-export default class CounterComponent extends HTMLElement{
+
+import ExtendedHTMLElement from "../Modules/ExtendedHTMLElement.js"
+
+export default class CounterComponent extends ExtendedHTMLElement{
     
     state={
         count:1,
@@ -23,6 +26,7 @@ export default class CounterComponent extends HTMLElement{
     constructor(){
         super()
         this.shadow=this.attachShadow({mode:"open"})
+        this.shadow.innerHTML=`<link rel="stylesheet" href="Counter/style.css" />`
         this.shadow.render=this.render.bind(this)
         this.shadow.state=this.state
         this.shadow.ref=this.ref
@@ -35,7 +39,7 @@ export default class CounterComponent extends HTMLElement{
     }
 
     disconnectedCallback(){
-        this.removeEventListener("click2",this.increment)
+        this.removeEventListener("increment",this.increment)
     }
 
     increment({detail}){
@@ -44,14 +48,13 @@ export default class CounterComponent extends HTMLElement{
     }
 
     render(){
-        this.shadow.innerHTML=`
-        <link rel="stylesheet" href="Counter/style.css" />
+        super.render(`
         <div>
             <h2>Counter</h2>
-            <counter-button></counter-button>
+            <counter-button></counter-button><br /><br />
             <counter-text onload="this.getRootNode().ref.counter_text=this;return this.getRootNode().state"></counter-text>
         </div>        
-        `
+        `)
     }
 
 }

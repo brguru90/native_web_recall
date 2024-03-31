@@ -1,0 +1,18 @@
+/*
+ * File: style.css
+ * Project: Button
+ * File Created: Saturday, 30th March 2024 9:14:54 pm
+ * Author: Gurruprasad BR (you@you.you)
+ * -----
+ * Last Modified: Sunday, 31st March 2024 3:45:09 pm
+ * Modified By: Guruprasad BR (you@you.you>)
+ */
+
+
+
+*{
+   color: white;
+   background-color: rgb(7, 7, 183);
+   border:solid 2px rgb(96, 96, 148);
+}
+
