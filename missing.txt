@@ -1,0 +1,16 @@
+/*
+ * File: missing.txt
+ * Project: js brushup
+ * File Created: Sunday, 31st March 2024 12:07:33 pm
+ * Author: Guruprasad BR (you@you.you)
+ * -----
+ * Last Modified: Sunday, 31st March 2024 12:09:45 pm
+ * Modified By: Guruprasad BR (you@you.you>)
+ */
+
+1. reactivity on change in state
+2. passing props to child, without doing json parse on attribute value
+3. reactivity on change in props
+4. Dynamic import
+5. lack of LSP support
+6. 
