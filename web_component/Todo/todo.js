@@ -4,7 +4,7 @@
  * File Created: Sunday, 31st March 2024 6:07:32 pm
  * Author: Guruprasad BR (you@you.you)
  * -----
- * Last Modified: Sunday, 31st March 2024 8:46:52 pm
+ * Last Modified: Tuesday, 2nd April 2024 1:26:49 am
  * Modified By: Guruprasad BR (you@you.you>)
  */
 
@@ -27,8 +27,17 @@ export default class TodoComponent extends ExtendedHTMLElement {
         this.shadow.ref=this.ref
         this.shadow.onAddTodo=this.onAddTodo.bind(this)
         this.render()
+        
+        // this.onSlotUpdate=this.onSlotUpdate.bind(this)
+        // this.shadowRoot.addEventListener('slotchange', this.onSlotUpdate);     
+        
     }
 
+    // onSlotUpdate(event){
+    //     console.log(event)
+    //     this.shadowRoot.removeEventListener('slotchange', this.onSlotUpdate); 
+    //     this.render()     
+    // }
 
     onAddTodo(value){
         // may be not a better way, since difficult to trace
@@ -39,7 +48,10 @@ export default class TodoComponent extends ExtendedHTMLElement {
     render() {
         super.render(`
             <todo-input></todo-input>
-            <todo-list onload="this.getRootNode().ref.todo_list=this; return this.getRootNode().state"></todo-list>
+            SLOT: <slot></slot>
+            <div>
+                <todo-list onload="this.getRootNode().ref.todo_list=this; return this.getRootNode().state"></todo-list>
+            </div>
         `)
     }
 

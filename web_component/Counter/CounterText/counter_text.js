@@ -4,7 +4,7 @@
  * File Created: Sunday, 31st March 2024 12:11:59 pm
  * Author: Guruprasad BR (you@you.you)
  * -----
- * Last Modified: Monday, 1st April 2024 12:21:43 am
+ * Last Modified: Tuesday, 2nd April 2024 1:31:06 am
  * Modified By: Guruprasad BR (you@you.you>)
  */
 
@@ -25,6 +25,11 @@ export default class CounterText extends ExtendedHTMLElement {
         this.shadow.innerHTML=`<link rel="stylesheet" href="Counter/CounterText/style.css?test" />`
         this.shadow.ref=this.ref
         this.render()
+         
+        setInterval(() => {
+            // slot seems to work on only update to reference
+            this.shadow.querySelector("#clock").querySelector("span").innerHTML=new Date().toLocaleString()
+        }, 1000);
     }
 
     updateComponent() {
@@ -34,7 +39,6 @@ export default class CounterText extends ExtendedHTMLElement {
 
 
     connectedCallback() {
-        super.connectedCallback()
         this.updateComponent()
     }
 
@@ -49,8 +53,13 @@ export default class CounterText extends ExtendedHTMLElement {
 
     render() {
         super.render(`
+            Empty text
             <div>Count: ${this.count}</div>
-            <todo-component onload="this.getRootNode()" />
+            <todo-component onload="this.getRootNode()"><span id="clock">slot_<span>clock</span></span></todo-component>
+            <div>
+                Todo Nested in Div<br />
+                <todo-component onload="this.getRootNode()">slot_${this.count}</todo-component>
+            </div>
         `)
     }
 

@@ -4,7 +4,7 @@
  * File Created: Saturday, 30th March 2024 9:04:25 pm
  * Author: Guruprasad BR (you@you.you)
  * -----
- * Last Modified: Sunday, 31st March 2024 10:53:20 pm
+ * Last Modified: Monday, 1st April 2024 7:47:37 pm
  * Modified By: Guruprasad BR (you@you.you>)
  */
 
@@ -34,12 +34,10 @@ export default class CounterComponent extends ExtendedHTMLElement{
     }
 
     connectedCallback(){
-        super.connectedCallback()
         this.shadow.querySelector("counter-button").addEventListener("increment",this.increment)
     }
 
     disconnectedCallback(){
-        super.disconnectedCallback()
         this.removeEventListener("increment",this.increment)
     }
 
