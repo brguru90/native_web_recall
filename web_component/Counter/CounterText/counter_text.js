@@ -4,7 +4,7 @@
  * File Created: Sunday, 31st March 2024 12:11:59 pm
  * Author: Guruprasad BR (you@you.you)
  * -----
- * Last Modified: Tuesday, 2nd April 2024 1:31:06 am
+ * Last Modified: Tuesday, 2nd April 2024 1:47:22 am
  * Modified By: Guruprasad BR (you@you.you>)
  */
 
@@ -58,7 +58,7 @@ export default class CounterText extends ExtendedHTMLElement {
             <todo-component onload="this.getRootNode()"><span id="clock">slot_<span>clock</span></span></todo-component>
             <div>
                 Todo Nested in Div<br />
-                <todo-component onload="this.getRootNode()">slot_${this.count}</todo-component>
+                <todo-component onload="this.getRootNode()"><span>slot_${this.count}</span></todo-component>
             </div>
         `)
     }
