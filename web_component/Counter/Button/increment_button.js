@@ -4,7 +4,7 @@
  * File Created: Sunday, 31st March 2024 12:11:51 pm
  * Author: Guruprasad BR (you@you.you)
  * -----
- * Last Modified: Sunday, 31st March 2024 8:25:59 pm
+ * Last Modified: Tuesday, 2nd April 2024 7:35:02 pm
  * Modified By: Guruprasad BR (you@you.you>)
  */
 
@@ -15,8 +15,7 @@ export default class CounterButton extends ExtendedHTMLElement {
     constructor() {
         super()
         this.shadow.innerHTML=`<link rel="stylesheet" href="Counter/Button/style.css" />`
-        this.shadow.render=this.render.bind(this)
-        this.render()
+        this.updateUI()
         this.shadow.onclickButton = this.onclickButton
     }
 
@@ -32,7 +31,7 @@ export default class CounterButton extends ExtendedHTMLElement {
     }
 
     render() {
-        super.render(`
+        return (`
             <button onclick="this.getRootNode().onclickButton(event,this)">Increment</button>
         `)
     }

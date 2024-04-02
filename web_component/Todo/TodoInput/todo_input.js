@@ -4,7 +4,7 @@
  * File Created: Sunday, 31st March 2024 6:12:09 pm
  * Author: Guruprasad BR (you@you.you)
  * -----
- * Last Modified: Sunday, 31st March 2024 11:25:15 pm
+ * Last Modified: Tuesday, 2nd April 2024 7:34:21 pm
  * Modified By: Guruprasad BR (you@you.you>)
  */
 
@@ -20,7 +20,7 @@ export default class TodoInput extends ExtendedHTMLElement {
         super()
         this.shadow.onAdd = this.onAdd.bind(this)
         this.shadow.updateText = this.updateText.bind(this)
-        this.render()
+        this.updateUI()
     }
 
 
@@ -37,7 +37,7 @@ export default class TodoInput extends ExtendedHTMLElement {
     }
 
     render() {
-        super.render(`
+        return (`
             <input type="text" onkeyup="this.getRootNode().updateText(event)" /> <input type="button" value="add" onclick="this.getRootNode().onAdd()" />
         `)
     }

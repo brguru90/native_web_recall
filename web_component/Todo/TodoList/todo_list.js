@@ -4,7 +4,7 @@
  * File Created: Sunday, 31st March 2024 6:12:17 pm
  * Author: Guruprasad BR (you@you.you)
  * -----
- * Last Modified: Monday, 1st April 2024 7:47:46 pm
+ * Last Modified: Tuesday, 2nd April 2024 7:34:13 pm
  * Modified By: Guruprasad BR (you@you.you>)
  */
 
@@ -18,12 +18,12 @@ export default class TodoList extends ExtendedHTMLElement {
     constructor() {
         super()
         this.shadow.innerHTML=`<link rel="stylesheet" href="Todo/TodoList/style.css" />`
-        this.render()
+        this.updateUI()
     }
 
     updateComponent() {
         this.todos = this.onload().todo
-        this.render()
+        this.updateUI()
     }
 
 
@@ -32,10 +32,11 @@ export default class TodoList extends ExtendedHTMLElement {
     }
 
     static get observedAttributes() {
-        return ["key"];
+        return ["__update_key","key"];
     }
 
     attributeChangedCallback() {
+        super.attributeChangedCallback()
         this.updateComponent()
     }
 
@@ -45,12 +46,12 @@ export default class TodoList extends ExtendedHTMLElement {
 
 
     render() {
-        super.render(`
+        return `
             <h1>Todo List</h1>
             <ul>
                 ${this.getList()}
             </ul>
-        `)
+         `
     }
 
 }

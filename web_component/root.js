@@ -4,7 +4,7 @@
  * File Created: Saturday, 30th March 2024 8:44:38 pm
  * Author: Gurruprasad BR (you@you.you)
  * -----
- * Last Modified: Monday, 1st April 2024 12:15:37 am
+ * Last Modified: Tuesday, 2nd April 2024 7:33:53 pm
  * Modified By: Guruprasad BR (you@you.you>)
  */
 
@@ -15,12 +15,12 @@ export default class RootComponent extends ExtendedHTMLElement{
 
     constructor(){
         super()
-        this.render()
+        this.updateUI()
     }
 
 
     render(){
-        super.render(`
+        return (`
         <fragment-component>
             <h1>Root component</h1>
             <slot></slot>
