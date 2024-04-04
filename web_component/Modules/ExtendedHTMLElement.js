@@ -4,7 +4,7 @@
  * File Created: Sunday, 31st March 2024 5:50:46 pm
  * Author: Guruprasad BR (you@you.you)
  * -----
- * Last Modified: Tuesday, 2nd April 2024 7:52:26 pm
+ * Last Modified: Thursday, 4th April 2024 12:40:07 pm
  * Modified By: Guruprasad BR (you@you.you>)
  */
 
@@ -56,6 +56,8 @@ export default class ExtendedHTMLElement extends HTMLElement {
         this.__render(this.render())
     }
 
+    /**   !!! reactivity on web component */
+
     __memorizeChildState(){
         this.__child_memo=[]
         for(let i=0;i<this.fragment.childNodes.length;i++){
@@ -63,51 +65,45 @@ export default class ExtendedHTMLElement extends HTMLElement {
         }
     }
 
-    __replace_child(parentNode,memo_node,attribute_change){
+    
+
+    __replace_child(parentNode,memo_node){
         if(!parentNode.childNodes.length) return
-        /****
-         * need some way to update slot contents
-         * $0.querySelector("slot").assignedNodes()
-         */
-
-
-
-        // const _debug=new Array(...parentNode.childNodes).filter(ch=>ch.localName=="todo-component")
-        // if(_debug.length){
-        //     console.log(parentNode.childNodes)
-        // }
         const newChild=[]
         for(let i=0;i<parentNode.childNodes.length;i++){
             const node=parentNode.childNodes[i]
-            if(node.shadow){
-                newChild.push(memo_node?memo_node.childNodes[i]:node)
-                attribute_change.push(newChild[newChild.length-1])
-            } else{
-                this.__replace_child(node,memo_node?memo_node.childNodes[i]:null,attribute_change)
+            if(node.shadow){ // if the node has shadow then identifying current node as web component (in current implementation all wc have shadow)
+                // first restore the shadow child or web component 
+                // i.e., <wc></wc>  restore->wc
+                const updatedWC=memo_node?memo_node.childNodes[i]:node.shadow
+                // then <wc> children </wc> look for --> children
+                while (updatedWC.firstChild) {
+                    updatedWC.removeChild(updatedWC.lastChild);
+                }
+                // then replace old child elements with new child elements
+                updatedWC.append(...node.childNodes)
+                // the repeat same with all the nested child elements
+                // to restore in deep nested web components states
+                this.__replace_child(updatedWC,memo_node?memo_node.childNodes[i]:null)
+                newChild.push(updatedWC)
+            } else{ // if its regular native element like <div>
+                this.__replace_child(node,memo_node?memo_node.childNodes[i]:null)
                 newChild.push(node)
             }
         }
-
-        // if(_debug.length){
-        //     console.log(parentNode.childNodes,memo_node,newChild)
-        // }
         while (parentNode.firstChild) {
             parentNode.removeChild(parentNode.lastChild);
         }
         parentNode.append(...newChild)
-        // if(_debug.length){
-        //     console.log(parentNode.childNodes,memo_node,newChild)
-        // }
     }
 
     __restoreChildState(){
         // get current state
-        const attribute_change=[]
-        this.__replace_child(this.fragment,{childNodes:this.__child_memo},attribute_change)
-        attribute_change.forEach(elem=>{
-            elem.setAttribute("__update_key",Math.random())
-        })
+        this.__replace_child(this.fragment,{childNodes:this.__child_memo})
     }
+
+
+    /**   !!! reactivity on web component */
 
 
     __render(html) {
