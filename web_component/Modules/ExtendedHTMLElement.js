@@ -4,7 +4,7 @@
  * File Created: Sunday, 31st March 2024 5:50:46 pm
  * Author: Guruprasad BR (you@you.you)
  * -----
- * Last Modified: Thursday, 4th April 2024 12:50:53 pm
+ * Last Modified: Thursday, 4th April 2024 1:23:26 pm
  * Modified By: Guruprasad BR (you@you.you>)
  */
 
@@ -27,16 +27,15 @@ export default class ExtendedHTMLElement extends HTMLElement {
         if(this.render==undefined){
             throw "render is not implemented"
         }
-        this.onSlotUpdate=this.onSlotUpdate.bind(this)
-        this.shadow.addEventListener('slotchange', this.onSlotUpdate); 
+        // this.onSlotUpdate=this.onSlotUpdate.bind(this)
+        // this.shadow.addEventListener('slotchange', this.onSlotUpdate); 
 
     }
 
-     onSlotUpdate(event){
-        console.log(event)
-        this.shadow.removeEventListener('slotchange', this.onSlotUpdate); 
-        this.updateUI()     
-    }
+    //  onSlotUpdate(event){
+    //     this.shadow.removeEventListener('slotchange', this.onSlotUpdate); 
+    //     this.updateUI()     
+    // }
     
     static get observedAttributes() {
         return ["__update_key"]

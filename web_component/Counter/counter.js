@@ -4,7 +4,7 @@
  * File Created: Saturday, 30th March 2024 9:04:25 pm
  * Author: Guruprasad BR (you@you.you)
  * -----
- * Last Modified: Tuesday, 2nd April 2024 7:35:14 pm
+ * Last Modified: Thursday, 4th April 2024 1:40:53 pm
  * Modified By: Guruprasad BR (you@you.you>)
  */
 
@@ -51,7 +51,7 @@ export default class CounterComponent extends ExtendedHTMLElement{
         <div>
             <h2>Counter</h2>
             <counter-button></counter-button><br /><br />
-            <counter-text onload="this.getRootNode().ref.counter_text=this;return this.getRootNode().state"></counter-text>
+            <counter-text onload="return mapStateAndRef(this,'counter_text')"></counter-text>
         </div>        
         `)
     }

@@ -4,7 +4,7 @@
  * File Created: Sunday, 31st March 2024 6:12:17 pm
  * Author: Guruprasad BR (you@you.you)
  * -----
- * Last Modified: Tuesday, 2nd April 2024 7:34:13 pm
+ * Last Modified: Thursday, 4th April 2024 1:40:11 pm
  * Modified By: Guruprasad BR (you@you.you>)
  */
 
@@ -35,7 +35,8 @@ export default class TodoList extends ExtendedHTMLElement {
         return ["__update_key","key"];
     }
 
-    attributeChangedCallback() {
+    attributeChangedCallback(name) {
+        // console.log({name})
         super.attributeChangedCallback()
         this.updateComponent()
     }

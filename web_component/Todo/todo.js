@@ -4,7 +4,7 @@
  * File Created: Sunday, 31st March 2024 6:07:32 pm
  * Author: Guruprasad BR (you@you.you)
  * -----
- * Last Modified: Tuesday, 2nd April 2024 7:35:32 pm
+ * Last Modified: Thursday, 4th April 2024 1:35:27 pm
  * Modified By: Guruprasad BR (you@you.you>)
  */
 
@@ -51,7 +51,7 @@ export default class TodoComponent extends ExtendedHTMLElement {
             <todo-input></todo-input>
             SLOT: <slot></slot>
             <div>
-                <todo-list onload="this.getRootNode().ref.todo_list=this; return this.getRootNode().state"></todo-list>
+                <todo-list onload="return mapStateAndRef(this,'todo_list')"></todo-list>
             </div>
         `)
         // console.log("slot",this.shadow.querySelector("slot"))
