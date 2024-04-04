@@ -4,29 +4,37 @@
  * File Created: Sunday, 31st March 2024 12:11:59 pm
  * Author: Guruprasad BR (you@you.you)
  * -----
- * Last Modified: Sunday, 31st March 2024 6:40:42 pm
+ * Last Modified: Tuesday, 2nd April 2024 7:34:35 pm
  * Modified By: Guruprasad BR (you@you.you>)
  */
 
 import ExtendedHTMLElement from "../../Modules/ExtendedHTMLElement.js"
 
+import "../../Todo/todo.js"
 
 export default class CounterText extends ExtendedHTMLElement {
 
 
     count = 0
 
+    ref={}
+
     constructor() {
         super()
-        this.shadow = this.attachShadow({ mode: "open" })
         // static HTML
         this.shadow.innerHTML=`<link rel="stylesheet" href="Counter/CounterText/style.css?test" />`
-        this.render()
+        this.shadow.ref=this.ref
+        this.updateUI()
+         
+        setInterval(() => {
+            // slot seems to work on only update to reference
+            this.shadow.querySelector("#clock").querySelector("span").innerHTML=new Date().toLocaleString()
+        }, 1000);
     }
 
     updateComponent() {
         this.count = this.onload().count
-        this.render()
+        this.updateUI()
     }
 
 
@@ -44,7 +52,15 @@ export default class CounterText extends ExtendedHTMLElement {
 
 
     render() {
-        super.render(`<div>Count: ${this.count}</div>`)
+        return (`
+            Empty text
+            <div>Count: ${this.count}</div>
+            <todo-component onload="this.getRootNode()"><span id="clock">slot_<span>clock</span></span></todo-component>
+            <div>
+                Todo Nested in Div<br />
+                <todo-component onload="this.getRootNode()"><span>slot_${this.count}</span></todo-component>
+            </div>
+        `)
     }
 
 }

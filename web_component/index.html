@@ -4,7 +4,7 @@ Project: web_component
 File Created: Saturday, 30th March 2024 7:19:43 pm
 Author: Gurruprasad BR (you@you.you)
 -----
-Last Modified: Sunday, 31st March 2024 1:10:48 pm
+Last Modified: Tuesday, 2nd April 2024 1:20:16 am
 Modified By: Guruprasad BR (you@you.you>)
 -->
 
@@ -17,10 +17,17 @@ Modified By: Guruprasad BR (you@you.you>)
     <script defer type="module" src="script.js"></script>
     <title>Document</title>
 </head>
+<script>
+    setInterval(() => {
+        document.querySelector("#clock").innerHTML=new Date().toLocaleString()
+    }, 1000);
+
+</script>
 <body>
 
     <h1>Index HTML</h1>
     <root-component>
+        <span id="clock">Time</span>
         <counter-component></counter-component>
     </root-component>
     

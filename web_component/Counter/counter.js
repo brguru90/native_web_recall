@@ -4,7 +4,7 @@
  * File Created: Saturday, 30th March 2024 9:04:25 pm
  * Author: Guruprasad BR (you@you.you)
  * -----
- * Last Modified: Sunday, 31st March 2024 6:06:45 pm
+ * Last Modified: Tuesday, 2nd April 2024 7:35:14 pm
  * Modified By: Guruprasad BR (you@you.you>)
  */
 
@@ -25,12 +25,11 @@ export default class CounterComponent extends ExtendedHTMLElement{
 
     constructor(){
         super()
-        this.shadow=this.attachShadow({mode:"open"})
         this.shadow.innerHTML=`<link rel="stylesheet" href="Counter/style.css" />`
-        this.shadow.render=this.render.bind(this)
+        // this.shadow.render=this.render.bind(this)
         this.shadow.state=this.state
         this.shadow.ref=this.ref
-        this.render()
+        this.updateUI()
         this.increment=this.increment.bind(this)
     }
 
@@ -48,7 +47,7 @@ export default class CounterComponent extends ExtendedHTMLElement{
     }
 
     render(){
-        super.render(`
+        return (`
         <div>
             <h2>Counter</h2>
             <counter-button></counter-button><br /><br />
