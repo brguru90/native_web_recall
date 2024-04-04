@@ -4,7 +4,7 @@
  * File Created: Sunday, 31st March 2024 12:11:59 pm
  * Author: Guruprasad BR (you@you.you)
  * -----
- * Last Modified: Thursday, 4th April 2024 1:42:25 pm
+ * Last Modified: Thursday, 4th April 2024 3:29:31 pm
  * Modified By: Guruprasad BR (you@you.you>)
  */
 
@@ -23,6 +23,7 @@ export default class CounterText extends ExtendedHTMLElement {
         super()
         // static HTML
         this.shadow.innerHTML=`<link rel="stylesheet" href="Counter/CounterText/style.css?test" />`
+        this.shadow.innerHTML+=`<script> var test_var=Math.randrom();</script>`
         this.shadow.ref=this.ref
         this.updateUI()
          
@@ -55,10 +56,24 @@ export default class CounterText extends ExtendedHTMLElement {
         return (`
             Empty text
             <div>Count: ${this.count}</div>
-            <todo-component onload="return mapStateAndRef(this)"><span id="clock">slot_<span>clock</span></span></todo-component>
+            <todo-component onload="return mapStateAndRef(this,null,'test_var')"><span id="clock">slot_<span>clock</span></span></todo-component>
             <div>
                 Todo Nested in Div<br />
-                <todo-component onload="return mapStateAndRef(this)"><span>slot_${this.count}</span></todo-component>
+                <todo-component onload="return mapStateAndRef(this,null,'test_var')"><span>slot_${this.count}</span></todo-component>
+
+                Todo nested itself: <br />
+                <fieldset>
+                    <legend>Outer Todo</legend>
+                    <todo-component onload="return mapStateAndRef(this,null,'test_var')">
+                        <span>slot_${this.count}</span><br />
+                        <fieldset>
+                            <legend>Nested Todo</legend>
+                            <todo-component onload="return mapStateAndRef(this,null,'test_var')">
+                                <span>slot_${this.count}</span>
+                            </todo-component>     
+                        </fieldset>           
+                    </todo-component>
+                </fieldset>     
             </div>
         `)
     }
