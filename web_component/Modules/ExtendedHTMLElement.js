@@ -4,7 +4,7 @@
  * File Created: Sunday, 31st March 2024 5:50:46 pm
  * Author: Guruprasad BR (you@you.you)
  * -----
- * Last Modified: Thursday, 4th April 2024 1:23:26 pm
+ * Last Modified: Tuesday, 9th April 2024 5:36:05 pm
  * Modified By: Guruprasad BR (you@you.you>)
  */
 
@@ -38,7 +38,7 @@ export default class ExtendedHTMLElement extends HTMLElement {
     // }
     
     static get observedAttributes() {
-        return ["__update_key"]
+        return ["__update_key","debugcomp"]
     }
 
     attributeChangedCallback(){
@@ -67,14 +67,28 @@ export default class ExtendedHTMLElement extends HTMLElement {
     
 
     __replace_child(parentNode,memo_node){
+        if(this.constructor.name!="TodoComponent"){
+            console.log(this.constructor.name)
+        }
+        if(this.getAttribute("debugcomp")!=null){
+            console.log(this.constructor.name)
+        }
         if(!parentNode.childNodes.length) return
         const newChild=[]
         for(let i=0;i<parentNode.childNodes.length;i++){
             const node=parentNode.childNodes[i]
             if(node.shadow){ // if the node has shadow then identifying current node as web component (in current implementation all wc have shadow)
-                // first restore the shadow child or web component 
+                // first restore the old web component instead of new 
                 // i.e., <wc></wc>  restore->wc
-                const updatedWC=memo_node?memo_node.childNodes[i]:node.shadow
+                const updatedWC=memo_node?memo_node.childNodes[i]:null
+                if(updatedWC==null){
+                    newChild.push(node)
+                    continue
+                }
+                // since updatedWC have reference to updatedWC, so removing child of updatedWC also modifies memo_node, so making a copy of memo_node children
+                const disconnected_memo_node=document.createDocumentFragment()
+                disconnected_memo_node.append(...memo_node.childNodes[i].childNodes)
+
                 // then <wc> children </wc> look for --> children
                 while (updatedWC.firstChild) {
                     updatedWC.removeChild(updatedWC.lastChild);
@@ -83,7 +97,7 @@ export default class ExtendedHTMLElement extends HTMLElement {
                 updatedWC.append(...node.childNodes)
                 // the repeat same with all the nested child elements
                 // to restore in deep nested web components states
-                this.__replace_child(updatedWC,memo_node?memo_node.childNodes[i]:null)
+                this.__replace_child(updatedWC,disconnected_memo_node)
                 newChild.push(updatedWC)
             } else{ // if its regular native element like <div>
                 this.__replace_child(node,memo_node?memo_node.childNodes[i]:null)

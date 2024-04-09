@@ -4,7 +4,7 @@
  * File Created: Sunday, 31st March 2024 12:11:59 pm
  * Author: Guruprasad BR (you@you.you)
  * -----
- * Last Modified: Thursday, 4th April 2024 3:29:31 pm
+ * Last Modified: Tuesday, 9th April 2024 3:14:16 pm
  * Modified By: Guruprasad BR (you@you.you>)
  */
 
@@ -64,11 +64,11 @@ export default class CounterText extends ExtendedHTMLElement {
                 Todo nested itself: <br />
                 <fieldset>
                     <legend>Outer Todo</legend>
-                    <todo-component onload="return mapStateAndRef(this,null,'test_var')">
+                    <todo-component debugcomp="true" onload="return mapStateAndRef(this,null,'test_var')" >
                         <span>slot_${this.count}</span><br />
                         <fieldset>
                             <legend>Nested Todo</legend>
-                            <todo-component onload="return mapStateAndRef(this,null,'test_var')">
+                            <todo-component  onload="return mapStateAndRef(this,null,'test_var')" >
                                 <span>slot_${this.count}</span>
                             </todo-component>     
                         </fieldset>           
