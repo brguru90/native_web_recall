@@ -4,7 +4,7 @@
  * File Created: Sunday, 31st March 2024 5:50:46 pm
  * Author: Guruprasad BR (you@you.you)
  * -----
- * Last Modified: Tuesday, 9th April 2024 5:36:05 pm
+ * Last Modified: Tuesday, 9th April 2024 7:32:23 pm
  * Modified By: Guruprasad BR (you@you.you>)
  */
 
@@ -67,13 +67,22 @@ export default class ExtendedHTMLElement extends HTMLElement {
     
 
     __replace_child(parentNode,memo_node){
-        if(this.constructor.name!="TodoComponent"){
-            console.log(this.constructor.name)
+        // if(this.constructor.name!="TodoComponent"){
+        //     console.log(this.constructor.name)
+        // }
+        // if(this.getAttribute("debugcomp")!=null){
+        //     console.log(this.constructor.name)
+        // }
+        
+        // if(!parentNode.childNodes.length) {
+        //     return parentNode
+        // }
+        // if(parentNode.tagName=="SLOT"){
+        //     return parentNode
+        // }
+        if(!parentNode.childNodes.length) {
+            return memo_node || parentNode
         }
-        if(this.getAttribute("debugcomp")!=null){
-            console.log(this.constructor.name)
-        }
-        if(!parentNode.childNodes.length) return
         const newChild=[]
         for(let i=0;i<parentNode.childNodes.length;i++){
             const node=parentNode.childNodes[i]
@@ -97,9 +106,11 @@ export default class ExtendedHTMLElement extends HTMLElement {
                 updatedWC.append(...node.childNodes)
                 // the repeat same with all the nested child elements
                 // to restore in deep nested web components states
+                
                 this.__replace_child(updatedWC,disconnected_memo_node)
                 newChild.push(updatedWC)
             } else{ // if its regular native element like <div>
+                
                 this.__replace_child(node,memo_node?memo_node.childNodes[i]:null)
                 newChild.push(node)
             }
@@ -108,6 +119,7 @@ export default class ExtendedHTMLElement extends HTMLElement {
             parentNode.removeChild(parentNode.lastChild);
         }
         parentNode.append(...newChild)
+        return parentNode
     }
 
     __restoreChildState(){

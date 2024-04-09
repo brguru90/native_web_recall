@@ -4,7 +4,7 @@
  * File Created: Sunday, 31st March 2024 6:12:17 pm
  * Author: Guruprasad BR (you@you.you)
  * -----
- * Last Modified: Thursday, 4th April 2024 1:40:11 pm
+ * Last Modified: Tuesday, 9th April 2024 7:48:35 pm
  * Modified By: Guruprasad BR (you@you.you>)
  */
 
@@ -49,6 +49,8 @@ export default class TodoList extends ExtendedHTMLElement {
     render() {
         return `
             <h1>Todo List</h1>
+            TodoList rendered at:${new Date().toLocaleString()}<br />
+            Dummy input: <input type="text" />
             <ul>
                 ${this.getList()}
             </ul>

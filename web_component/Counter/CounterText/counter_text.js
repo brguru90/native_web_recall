@@ -4,7 +4,7 @@
  * File Created: Sunday, 31st March 2024 12:11:59 pm
  * Author: Guruprasad BR (you@you.you)
  * -----
- * Last Modified: Tuesday, 9th April 2024 3:14:16 pm
+ * Last Modified: Tuesday, 9th April 2024 7:49:13 pm
  * Modified By: Guruprasad BR (you@you.you>)
  */
 
@@ -44,7 +44,7 @@ export default class CounterText extends ExtendedHTMLElement {
     }
 
     static get observedAttributes() {
-        return ["key"];
+        return ["__update_key","key"];
     }
 
     attributeChangedCallback() {

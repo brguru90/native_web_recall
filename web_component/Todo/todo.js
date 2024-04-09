@@ -4,7 +4,7 @@
  * File Created: Sunday, 31st March 2024 6:07:32 pm
  * Author: Guruprasad BR (you@you.you)
  * -----
- * Last Modified: Thursday, 4th April 2024 1:35:27 pm
+ * Last Modified: Tuesday, 9th April 2024 5:44:15 pm
  * Modified By: Guruprasad BR (you@you.you>)
  */
 
@@ -49,7 +49,8 @@ export default class TodoComponent extends ExtendedHTMLElement {
     render() {
         return (`
             <todo-input></todo-input>
-            SLOT: <slot></slot>
+            SLOT: <slot></slot><br />
+            Todo rendered at:${new Date().toLocaleString()}
             <div>
                 <todo-list onload="return mapStateAndRef(this,'todo_list')"></todo-list>
             </div>

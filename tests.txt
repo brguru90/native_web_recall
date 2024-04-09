@@ -4,13 +4,15 @@
  * File Created: Thursday, 4th April 2024 2:55:23 pm
  * Author: Guruprasad BR (you@you.you)
  * -----
- * Last Modified: Thursday, 4th April 2024 3:02:31 pm
+ * Last Modified: Tuesday, 9th April 2024 7:27:41 pm
  * Modified By: Guruprasad BR (you@you.you>)
  */
 
+0. reactivity fixed for nested node except slot node
+in slot still not able to memorize the DOM
 1. need to check children of web components behaving properly
 2. need to check removing of node from both web components & childrens of web component are working properly
-3. need to check perofrmance by impementing large page with many text & modifing value in between & navigating page
-4. advance: impementing search within pagination & high light match with yellow background like old google search results
+3. need to check performance by implementing large page with many text & modifying value in between & navigating other page from pagination
+4. advance: implementing search within pagination & high light match with yellow background like old google search results
 5. need to check child update when parent props changes
 6. need to check perofrmance on deeply nested component that dom comparision happening efficiently
