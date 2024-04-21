@@ -4,7 +4,7 @@
  * File Created: Sunday, 31st March 2024 6:07:32 pm
  * Author: Guruprasad BR (you@you.you)
  * -----
- * Last Modified: Tuesday, 9th April 2024 5:44:15 pm
+ * Last Modified: Sunday, 21st April 2024 12:37:42 pm
  * Modified By: Guruprasad BR (you@you.you>)
  */
 
@@ -15,7 +15,8 @@ import "./TodoList/todo_list.js"
 export default class TodoComponent extends ExtendedHTMLElement {
 
     state={
-        todo:[]
+        todo:[],
+        count:0,
     }
 
     ref={}
@@ -40,6 +41,25 @@ export default class TodoComponent extends ExtendedHTMLElement {
     //     this.render()     
     // }
 
+    updateComponent() {
+        const parentState=this.onload()
+        this.state.count = parentState.count
+        this.updateUI()
+    }
+
+
+    connectedCallback() {
+        this.updateComponent()
+    }
+
+    static get observedAttributes() {
+        return ["__update_key","key"];
+    }
+
+    attributeChangedCallback() {
+        this.updateComponent()
+    }
+
     onAddTodo(value){
         // may be not a better way, since difficult to trace
         this.state.todo.push(value)
@@ -49,8 +69,12 @@ export default class TodoComponent extends ExtendedHTMLElement {
     render() {
         return (`
             <todo-input></todo-input>
-            SLOT: <slot></slot><br />
             Todo rendered at:${new Date().toLocaleString()}
+            <div style="border:solid 5px red;padding:5px;margin:5px">
+                <h2 style="color:red">SLOT from Todo:</h2> <slot></slot>
+            </div>
+            <br />
+            <p>Counter from props: ${this.state.count}</p>
             <div>
                 <todo-list onload="return mapStateAndRef(this,'todo_list')"></todo-list>
             </div>

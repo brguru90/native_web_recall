@@ -4,7 +4,7 @@
  * File Created: Sunday, 31st March 2024 12:11:59 pm
  * Author: Guruprasad BR (you@you.you)
  * -----
- * Last Modified: Tuesday, 9th April 2024 7:49:13 pm
+ * Last Modified: Sunday, 21st April 2024 12:38:56 pm
  * Modified By: Guruprasad BR (you@you.you>)
  */
 
@@ -15,7 +15,9 @@ import "../../Todo/todo.js"
 export default class CounterText extends ExtendedHTMLElement {
 
 
-    count = 0
+    state={
+        count:0,
+    }
 
     ref={}
 
@@ -23,7 +25,8 @@ export default class CounterText extends ExtendedHTMLElement {
         super()
         // static HTML
         this.shadow.innerHTML=`<link rel="stylesheet" href="Counter/CounterText/style.css?test" />`
-        this.shadow.innerHTML+=`<script> var test_var=Math.randrom();</script>`
+        this.shadow.innerHTML+=`<script> var test_var=Math.randrom();</script>`        
+        this.shadow.state=this.state
         this.shadow.ref=this.ref
         this.updateUI()
          
@@ -34,7 +37,7 @@ export default class CounterText extends ExtendedHTMLElement {
     }
 
     updateComponent() {
-        this.count = this.onload().count
+        this.state.count = this.onload().count
         this.updateUI()
     }
 
@@ -55,23 +58,25 @@ export default class CounterText extends ExtendedHTMLElement {
     render() {
         return (`
             Empty text
-            <div>Count: ${this.count}</div>
+            <div>Count: ${this.state.count}</div>
             <todo-component onload="return mapStateAndRef(this,null,'test_var')"><span id="clock">slot_<span>clock</span></span></todo-component>
             <div>
                 Todo Nested in Div<br />
-                <todo-component onload="return mapStateAndRef(this,null,'test_var')"><span>slot_${this.count}</span></todo-component>
+                <todo-component onload="return mapStateAndRef(this,null,'test_var')"><span>slot_${this.state.count}</span></todo-component>
 
                 Todo nested itself: <br />
                 <fieldset>
                     <legend>Outer Todo</legend>
-                    <todo-component debugcomp="true" onload="return mapStateAndRef(this,null,'test_var')" >
-                        <span>slot_${this.count}</span><br />
+                    <todo-component  debugcomp="true" onload="return mapStateAndRef(this,null,'test_var')">
+                        <!--- issue start here (slot update issue) --->
+                        <span>slot_${this.state.count}</span><br />
                         <fieldset>
                             <legend>Nested Todo</legend>
-                            <todo-component  onload="return mapStateAndRef(this,null,'test_var')" >
-                                <span>slot_${this.count}</span>
+                            <todo-component onload="return mapStateAndRef(this,null,'test_var')">
+                                <span>slot_${this.state.count}</span>
                             </todo-component>     
-                        </fieldset>           
+                        </fieldset>         
+                        <!--- issue end here here --->  
                     </todo-component>
                 </fieldset>     
             </div>
